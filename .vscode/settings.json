@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "bit": "cpp",
+        "barrier": "cpp",
+        "algorithm": "cpp",
+        "random": "cpp",
+        "format": "cpp",
+        "regex": "cpp",
+        "variant": "cpp",
+        "bitset": "cpp",
+        "memory_resource": "cpp",
+        "iostream": "cpp"
+    }
+}
