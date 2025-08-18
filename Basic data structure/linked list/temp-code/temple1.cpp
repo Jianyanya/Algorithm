@@ -1,4 +1,5 @@
-//题目链接<https://www.luogu.com.cn/problem/P1996#ide>
+//约瑟夫问题-洛谷-p1996,题目链接<https://www.luogu.com.cn/problem/P1996#ide>
+//动态链表做法
 #include<bits/stdc++.h>
 using namespace std;
 //链表做法,分为动态链表和静态链表,还有stl库中的list
