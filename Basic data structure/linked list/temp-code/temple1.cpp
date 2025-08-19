@@ -8,8 +8,8 @@ using namespace std;
 //优点是可以及时释放内存,缺点是需要管理空间容易出错
 //本节代码纯教科书式,不符合竞赛代码,你非要这样写也行
 struct node{
-    int data;
-    node *next;
+    int data;//节点值
+    node *next;//下一个节点的指针
 }; 
 int main(){
     int n,m;cin>>n>>m;
@@ -34,7 +34,7 @@ int main(){
         delete now;
         now = pre->next;
     }
-    cout<<now->data;
+    cout<<now->data;//输出多余的
     delete now;
     //打印链表
     // while(head->next!=NULL){
