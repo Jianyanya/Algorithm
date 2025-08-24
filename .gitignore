@@ -1,6 +1,8 @@
 # CPH文件
 **/*.cph
 **/.cph_archive/
+**/.cph/
+**/cph/
 **/cph*/
 **/*cph*/
 
