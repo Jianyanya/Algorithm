@@ -1,3 +1,4 @@
+# CPH文件
 **/*.cph
 **/.cph_archive/
 
@@ -6,6 +7,49 @@
 *.out
 *.o
 *.class
+*.bin
+*.dll
+*.so
+*.dylib
 
 # 临时目录
 /Arithmetic/
+/tmp/
+/temp/
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 运行时数据
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 编辑器目录和文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 依赖目录
+node_modules/
+jspm_packages/
+
+# 可执行文件
+/dist/
+/build/
+/out/
