@@ -4,6 +4,7 @@
 //为了对比,还是做一下
 /*
 //贪心
+//hdu的编译器居然不支持bits/stdc++.h头文件
 #include<iostream>
 using namespace std;
 int main(){
@@ -32,7 +33,6 @@ int main(){
 }
 */
 //动态规划
-//hdu的编译器居然不支持bits/stdc++.h头文件
 #include<iostream>
 #include<vector>
 using namespace std;
