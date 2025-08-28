@@ -30,6 +30,7 @@
     右子树: 根为C,其左子树为F,其右子树为G,后序为[F,G,C]
 5.合并答案[D,E,B]+[F,G,C]+[A],即为答案
 */
+//练习<https://pintia.cn/problem-sets/994805046380707840/exam/problems/type/7?problemSetProblemId=994805065406070784&page=1>
 #include<iostream>
 #include<vector>
 using namespace std;
