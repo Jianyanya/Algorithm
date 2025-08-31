@@ -6,7 +6,7 @@
 
 ### 提要:
 其中大多资料题目筛选于[罗永军的算法竞赛](http://tup.tsinghua.edu.cn/booksCenter/book_08808001.html)和我最喜欢的一个博主[灵山茶艾府](https://space.bilibili.com/206214)的题单,还有[OI wiki](https://oi-wiki.org/)的介绍  
-题目来源丰富:洛谷,leetcode,hdu,poj,codefoces;  
+题目来源丰富:洛谷,leetcode,hdu,poj,codefoces等;  
 其中都是用c++写的,对不起实在没有太多精力,我本身是java工程师呢
 
 ### 前言:
