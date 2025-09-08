@@ -13,12 +13,16 @@
 可以发现,我们把数据拿出来又放回去,还要保证每次拿出来的都是最小值,肯定是每次拿放里面都进行了排序,所以优先队列出来了
 那么接下来就好实现了
 */
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<queue>
+#include<string>
 using namespace std;
 string str;
 int main(){
-    priority_queue<int,vector<int>,greater<int>> pq;
     while(getline(cin,str)&&str!="END"){
+        priority_queue<int,vector<int>,greater<int>> pq;
         //计算每种字符的频次
         sort(str.begin(),str.end());
         int n = 1;
