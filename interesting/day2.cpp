@@ -1,30 +1,38 @@
 //https://sim.csp.thusaac.com/contest/38/problem/1
-#include<bits/stdc++.h>
+#include<iostream>
+#include<queue>
+#include<cstring>
+#include<utility> 
 using namespace std;
-int n,m,a,b;
-int ans = 1;
 const int N = 101;
-int arr[N][N] = {0};
-void dfs(int x,int y,int i){
-    if(x<1||x>n||y<1||y>n) return;
-    if(i>m) return;
-    if(arr[x][y]==0){
-        ans++;
-        arr[x][y]=1;
-    }
-    dfs(x-1,y+2,i+1);
-    dfs(x-1,y-2,i+1);
-    dfs(x+1,y+2,i+1);
-    dfs(x+1,y-2,i+1);
-    dfs(x-2,y+1,i+1);
-    dfs(x-2,y-1,i+1);
-    dfs(x+2,y+1,i+1);
-    dfs(x+2,y-1,i+1);
-}
-int main(){
-    cin>>n>>m>>a>>b;
-    arr[a][b] = 1;
-    dfs(a,b,0);
-    cout<<ans;
-    return 0;
+int vis[N][N] = {0};
+int DIR[8][2] = {{2,-1},{2,1},{1,2},{1,-2},{-2,-1},{-2,1},{-1,2},{-1,-2}};
+int n,k,a,b; 
+int main()
+{
+	cin>>n>>k>>a>>b;
+	queue<pair<int,int> > q;
+	q.push({a,b});
+	vis[a][b] = 1;
+	int ans = 1;
+	while(!q.empty()&&k>0){
+		int size = q.size();
+		for(int i = 0;i<size;i++){
+			int x = q.front().first;
+			int y = q.front().second;
+			q.pop();
+			for( auto d:DIR){
+				int nx = x+d[0];
+				int ny = y+d[1];
+				if(nx>0&&nx<=n&&ny>0&&ny<=n&&!vis[nx][ny]){
+					ans++;
+					vis[nx][ny] = 1;
+					q.push({nx,ny});
+				}
+			}
+		}
+		k--;
+	}
+	cout<<ans;
+	return 0;
 }

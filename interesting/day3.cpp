@@ -5,70 +5,67 @@
 //5 2 ->4 3
 //5 3 -> 4 4
 //4 16 1 1  ->4 6 6 6
-/*
-特殊情况:
-小遇到大直接放弃
-
-大遇到小,均分
-中间大值,怎么往后分
-*/
 #include <iostream>
-#include <vector>
-#include <climits>
-#include <algorithm>
 using namespace std;
+//二分答案
+/*
 
-int main() {
-    int n, k;
-    cin >> n >> k;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
+*/
+class Solution{
+const int N = 1e5+10;
+int n,m;
+int arr[N];
+bool check(int mid){
+    for(int i = 0;i<m;i++){
+        int t = 0;
+        for(int j = i;j<n;j+=m){
+            if(arr[j]+t>=mid) t = arr[j]+t-mid;
+            else return false;
+        }
     }
-    
-    int answer = INT_MAX;
-    for (int i = 0; i < k; i++) {
-        vector<int> group;
-        // 收集第i组的瓶子
-        for (int j = i; j < n; j += k) {
-            group.push_back(a[j]);
-        }
-        
-        if (group.empty()) continue;
-        
-        // 计算前缀和
-        vector<long long> prefix(group.size() + 1, 0);
-        for (int j = 0; j < group.size(); j++) {
-            prefix[j + 1] = prefix[j] + group[j];
-        }
-        
-        // 二分查找该组能达到的最大目标值t
-        int left = 0, right = prefix.back() / group.size();
-        int best_t = 0;
-        
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            bool valid = true;
-            
-            // 检查每个前缀是否满足条件
-            for (int j = 1; j <= group.size(); j++) {
-                if (prefix[j] < (long long)j * mid) {
-                    valid = false;
-                    break;
-                }
-            }
-            
-            if (valid) {
-                best_t = mid;
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        
-        answer = min(answer, best_t);
+    return true;
+}
+int main()
+{
+  cin>>n>>m;
+  for(int i = 0;i<n;i++){
+      cin>>arr[i];
+  }
+  int left = 1,right = 1e5;
+  int ans = 0;
+  while(left<=right){
+      int mid = (left+right)/2;
+      if(check(mid)) left = mid+1,ans = mid;
+      else right = mid-1;
+  }
+  cout<<ans;
+  return 0;
+}
+};
+//直接取最小平均前缀
+/*
+
+*/
+class Solution{
+    const int N = 1e5+10;
+int n,k;
+int arr[N];
+int main(){
+    cin>>n>>k;
+    for(int i = 0;i<n;i++){
+        cin>>arr[i];
     }
-    
-    cout << answer << endl;
+    int ans =INT_MAX ;
+    for(int i = 0;i<k;i++){
+        int sum = 0;
+        int cnt = 0;
+        for(int j = i;j<n;j+=k){
+            sum += arr[j];
+            cnt++;
+            ans = min(ans,sum/cnt);
+        }
+    }
+    cout<<ans;
     return 0;
 }
+};
