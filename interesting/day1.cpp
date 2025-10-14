@@ -1,14 +1,28 @@
-//正态分布https://sim.csp.thusaac.com/contest/38/problem/0
-#include<bits/stdc++.h>
+//cf(贪心,矩阵,1200)<https://codeforces.com/problemset/problem/2069/B>
+#include<bits/stdc++.h>;
 using namespace std;
 
 int main(){
     int n;cin>>n;
     while(n--){
-        int a,b,c;cin>>a>>b>>c;
-        int m = (c-a)*100/b;
-        int md = m%10+1;
-        cout<<m/10+1<<" "<<md<<endl;
+        int x,y;cin>>x>>y;
+        vector arr(x,vector<int>(y,0));
+        int mp[x*y+1] = {0};
+        int ans = -1;
+        int h = 0;
+        for(int i = 0 ;i<x;i++){
+            for(int j = 0;j<y;j++){
+                cin>>arr[i][j];
+                int t =  arr[i][j];
+                if(mp[t]==2) continue; 
+                if((i>0&&arr[i-1][j]==t)||(j>0&&arr[i][j-1]==t)){
+                    h = 1;
+                    mp[t] = 2;
+                    ans++;
+                }else if(mp[t]==0) mp[t] = 1,ans++;
+            }
+        }
+        cout<<ans-h<<endl;
     }
     return 0;
 }

@@ -1,4 +1,4 @@
-//Bound Found-poj-2566,题目链接<http://poj.org/problem?id=2566>
+//Bound Found-poj-2566,题目链接<http://bailian.openjudge.cn/practice/2566>
 //很难弄的一个题,双指针
 /*
 解题思路:
