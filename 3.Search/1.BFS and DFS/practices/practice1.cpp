@@ -1,4 +1,5 @@
 //POJ-1321-棋盘问题,题目链接<http://bailian.openjudge.cn/practice/1321>
+//八皇后的降级版,就是车的放置方案数
 #include<iostream>
 #include<vector>
 #include <cstring>

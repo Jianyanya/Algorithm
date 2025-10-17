@@ -13,13 +13,17 @@ int main(){
         for(int i = 0 ;i<x;i++){
             for(int j = 0;j<y;j++){
                 cin>>arr[i][j];
+            }
+        }
+        for(int i = 0 ;i<x;i++){
+            for(int j = 0;j<y;j++){
                 int t =  arr[i][j];
-                if(mp[t]==2) continue; 
+                if(mp[t]>=2) continue; 
                 if((i>0&&arr[i-1][j]==t)||(j>0&&arr[i][j-1]==t)){
                     h = 1;
-                    mp[t] = 2;
+                    mp[t]++;
                     ans++;
-                }else if(mp[t]==0) mp[t] = 1,ans++;
+                }else if(mp[t]==0) mp[t]++,ans++;
             }
         }
         cout<<ans-h<<endl;
