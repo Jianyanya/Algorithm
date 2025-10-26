@@ -1,5 +1,5 @@
 //First one-hdu-5358,题目链接<https://acm.hdu.edu.cn/showproblem.php?pid=5358>
-//考察三指针运用
+//考察三指针运用,题目难度目测2200
 /*
 解题思路:
 1.对于log2就是求2的多少次幂,直接用位运算可以解决
@@ -66,3 +66,64 @@ int main(){
     }
     return 0;
 }
+/*
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+typedef long long ll;
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int T; cin >> T;
+    while(T--){
+        int n; cin >> n;
+        int a;
+        vector<ll> prefix(n + 1, 0);
+        for(int i = 1; i <= n; i++){
+            cin >> a;
+            prefix[i] = prefix[i - 1] + a;
+        }
+        ll ans = 0;
+        for(int i = 1; i <= n; i++){
+            int j = i;
+            while(j <= n){
+                ll sum = prefix[j] - prefix[i - 1];
+                if(sum == 0){
+                    int k = j;
+                    while(k <= n && prefix[k] == prefix[i - 1]) k++;
+                    k--;
+                    int cnt = k - j + 1;
+                    ans += 1LL*cnt * i + 1LL*(j + k) * cnt / 2;// t=0, 所以(t+1)=1
+                    j = k + 1;
+                    continue;
+                }
+                int t = 0;
+                ll temp = sum;
+                while(temp > 1){
+                    t++;
+                    temp >>= 1;
+                }
+                ll lower = (1LL << t);
+                ll upper = (1LL << (t + 1)) - 1;
+                int left = j, right = n, R = j;
+                while(left <= right){
+                    int mid = (left + right) / 2;
+                    ll sum_mid = prefix[mid] - prefix[i - 1];
+                    if(sum_mid <= upper){
+                        R = mid;
+                        left = mid + 1;
+                    } else {
+                        right = mid - 1;
+                    }
+                }
+                int cnt = R - j + 1;
+                ans += (t+1)*(1LL*cnt * i + 1LL*(j + R) * cnt / 2);
+                j = R + 1;
+            }
+        }
+        cout << ans << "\n";
+    }
+    return 0;
+}
+*/

@@ -1,4 +1,9 @@
 //lougu-棋盘染色问题,题目链接<https://www.luogu.com.cn/problem/P1162>
+/*
+唯一的问题就是1内的0和1外的0不好区分
+学京爷的溜边吃法,从边上开始dfs搜索所有连续的0,并标记
+最后就直接是岛屿问题,搜索1中的0再bfs涂成一样的2就行
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int n;
