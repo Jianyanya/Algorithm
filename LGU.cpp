@@ -1,10 +1,10 @@
 /*
 #include <bits/stdc++.h>
 using namespace std;
-#define ve vector;
+#define ve vector
 using ll = long long;
 using ull = unsigned long long;
-using st = string;
+using sr = string;
 using db = double;
 
 int main() {
