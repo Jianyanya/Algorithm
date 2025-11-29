@@ -1,4 +1,5 @@
-
+#include<bits/stdc++.h>
+using namespace std;
 //直接取最小平均前缀
 /*
 

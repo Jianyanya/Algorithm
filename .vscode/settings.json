@@ -96,5 +96,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "climits": "cpp"
-    }
+    },
+    "codesnap-plus.boxShadow": "rgba(0, 123, 255, 0.15) 0px 20px 68px",
+    "codesnap-plus.transparentBackground": false
 }

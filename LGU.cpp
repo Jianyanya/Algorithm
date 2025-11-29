@@ -71,6 +71,9 @@ using ll = long long;
 using ull = unsigned long long;
 using sr = string;
 using db = double;
+const int MOD=998244353;
+const ll INF=1e18;
+const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
 int T;
 void solve(){
 
@@ -99,4 +102,33 @@ int main() {
     return 0;
 }
 */
-
+/*
+几种较好的防hack的哈希函数
+普通哈希函数
+struct custom_hash {
+    static uint64_t splitmix64(uint64_t x) {
+        x += 0x9e3779b97f4a7c15;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+        return x ^ (x >> 31);
+    }
+    size_t operator()(uint64_t x) const {
+        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+        return splitmix64(x + FIXED_RANDOM);
+    }
+};
+多元容器的哈希函数
+二元只需要删除第三条就行
+struct TupleHash{
+    size_t operator()(const tuple<int,int,int>&t)const{
+        const auto &a = get<0>(t);
+        const auto &b = get<1>(t);
+        const auto &c = get<2>(t);
+        size_t seed = 2166136261U;
+        seed = (seed^a)*16777619U;
+        seed = (seed^b)*16777619U;
+        seed = (seed^c)*16777619U;
+        return seed;
+    }
+};
+*/
