@@ -1,3 +1,7 @@
+//cf,题目链接<https://codeforces.com/problemset/problem/2149/E>
+/*
+恰好型滑窗
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ve vector
@@ -23,22 +27,22 @@ struct custom_hash {
 };
 ll f(int m){
     ll ans = 0;
-    unordered_map<int,int,custom_hash> mp;
-    for(int right = 0,left = 0;right<n;right++){
-        mp[arr[right]]++;
-        while(left<=right&&mp.size()>m){
-            mp[arr[left]]--;
-            if(mp[arr[left]]==0) mp.erase(arr[left]);
-            left++;
+    unordered_map<int,int> mp;
+    for(int i = 0,j = 0;i<n;i++){
+        mp[arr[i]]++;
+        while(j<=i&&mp.size()>m){
+            mp[arr[j]]--;
+            if(mp[arr[j]]==0) mp.erase(arr[j]);
+            j++;
         }
-        ans += max(min(right-left+1,r)-l+1,0);
+        ans += max(min(i-j+1,r)-l+1,0);
     }
     return ans;
 }
 void solve(){
     cin>>n>>k>>l>>r;
     for(int i = 0;i<n;i++) cin>>arr[i];
-    cout<<f(k)<<endl;
+    cout<<f(k) - f(k-1)<<endl;
 }
 signed main() {
     ios_base::sync_with_stdio(false);
