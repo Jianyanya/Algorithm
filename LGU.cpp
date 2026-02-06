@@ -64,13 +64,19 @@
 ▓░▒▓▓▓▓▓▓▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▒▓▓▓▓▓▓▓▓▓███▓▓▓▓▓▓▓▓▓▒▒▒
 */
 /*
+T次测评模板+常规头文件模板
+辅助函数:哈希函数,比较函数,水仙花数,质数筛法,split方法,判断平方数
+*/
 #include <bits/stdc++.h>
 using namespace std;
+#define fo(i,l,r) for(int i=(l);i<=(r);++i)
 #define ve vector
+#define endl '\n'
 using ll = long long;
 using ull = unsigned long long;
 using sr = string;
 using db = double;
+using dll = double long;
 const int MOD=998244353;
 const ll INF=1e18;
 const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
@@ -84,7 +90,6 @@ signed main() {
     cin>>T;
     while(T--) solve();
 }
-*/
 /*
 //other
 #include <iostream>
@@ -98,7 +103,7 @@ signed main() {
 #include<climits>
 using namespace std;
 
-int main() {
+int main(){
     return 0;
 }
 */
@@ -161,4 +166,76 @@ vector<long long> narcissistic = {
         1517841543307505039, 3289582984443187032, 4498128791164624869, 
         4929273885928088826
     };
+*/
+/*
+常用的质数筛法(lc版)
+埃式筛:
+const int MX = 1'000'001;
+bool is_prime[MX];
+vector<int> primes;
+auto init = [] {
+    ranges::fill(is_prime, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i < MX; i++) {
+        if (is_prime[i]) {
+            primes.push_back(i);
+            for (long long j = 1LL * i * i; j < MX; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    return 0;
+}();
+欧拉线性筛:
+const int MX = 1'000'001;
+bool is_prime[MX];
+vector<int> primes;
+auto init = [] {
+    ranges::fill(is_prime, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i < MX; i++) {
+        if (is_prime[i]) primes.push_back(i);
+        for (int j = 0; j < primes.size() && i*primes[j]< MX; j++) {
+            is_prime[i*primes[j]] = false;
+            if (i % primes[j] ==0 ) break;
+        }
+    }
+    return 0;
+}();
+*/
+/*
+c++中实现的split
+适应:需要存储数据,数据复用,生命周期长
+vector<stirng> getstrs(string str,char target){
+    vector<string> res;
+    string cur;
+    for(char c:str){
+        if(c==target){
+            res.push_back(cur);
+            cur.clear();
+        }else cur += c;
+    }
+    res.push_back(cur);
+    return res;
+}
+这里给出第二个split,根据ranges视图实现的split
+适用:一次遍历,不返回数据,在遍历时是双指针形式,用于修改原字符
+for(auto it : s|ranges::views::split(' ')){
+    //在循环中对it进行改动会影响原来整个字符串
+    //比如反转每个被' '分割的部分
+    ranges::reverse(it);
+}
+*/
+/*
+判断是否为平方数
+bool is_square(ll x) {
+    if (x < 0) return false;
+    int d = x % 10;
+    if(d != 0 && d != 1 && d != 4 && d != 5 && d != 6 && d != 9) return false;
+    if (x % 4 == 2 || x % 4 == 3) return false;
+    ll s = sqrt(x);
+    while ((s + 1) * (s + 1) <= x) s++;
+    while (s * s > x) s--;
+    return s * s == x;
+}
 */
