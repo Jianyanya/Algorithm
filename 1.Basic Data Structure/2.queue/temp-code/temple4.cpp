@@ -2,12 +2,13 @@
 //这题是不定最大子序列和问题,比较简单,可以用贪心和动态规划解决
 //不定就是不限定子数组的大小
 //为了对比,还是做一下
-/*
+
 //贪心
 //hdu的编译器居然不支持bits/stdc++.h头文件
 #include<iostream>
+#include<vector>
 using namespace std;
-int main(){
+void slove1(){
     int n;cin>>n;
     for(int j = 1;j<=n;j++){
         int m;cin>>m;
@@ -29,14 +30,9 @@ int main(){
         cout<<mx<<" "<<start<<" "<<end<<" "<<endl;
         if(j!=n) cout<<endl;
     }
-    return 0;
 }
-*/
 //动态规划
-#include<iostream>
-#include<vector>
-using namespace std;
-int main(){
+void slove2(){
     int n;cin>>n;
     for(int i = 1;i<=n;i++){
         int m;cin>>m;
@@ -57,5 +53,11 @@ int main(){
         cout<<mx<<" "<<start<<" "<<end<<" "<<endl;
         if(i!=n) cout<<endl;
     }
+}
+int main(){
+    //贪心
+    slove1();
+    //动态规划
+    slove2();
     return 0;
 }

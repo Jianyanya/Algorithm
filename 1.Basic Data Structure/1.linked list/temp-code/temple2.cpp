@@ -9,6 +9,7 @@ const int N = 101;//题目中n给出的范围
 struct node{
     int id,nextId;//这里面的操作全都跟动态链表一样
 }nodes[N];
+//这里声明了一个node的数组叫nodes,大小为N
 int main(){
     int n,m;cin>>n>>m;
     nodes[0].nextId = 1;//相当于头节点加个null,没用,但是养成好习惯

@@ -1,4 +1,4 @@
-//约瑟夫问题-洛谷-p1996,题目链接<https://www.luogu.com.cn/problem/P1996#ide>
+//约瑟夫问题-洛谷-p1996,题目链接<https://www.luogu.com.cn/problem/P1996>
 //动态链表做法
 #include<bits/stdc++.h>
 using namespace std;

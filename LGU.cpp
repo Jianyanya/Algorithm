@@ -125,18 +125,19 @@ struct custom_hash {
 多元容器的哈希函数
 二元只需要删除第三条就行
 struct TupleHash{
-    size_t operator()(const tuple<int,int,int>&t)const{
-        const auto &a = get<0>(t);
-        const auto &b = get<1>(t);
-        const auto &c = get<2>(t);
-        size_t seed = 2166136261U;
-        seed = (seed^a)*16777619U;
-        seed = (seed^b)*16777619U;
-        seed = (seed^c)*16777619U;
-        return seed;
-    }
+    size_t operator()(const tuple<int,int,int>&t)const{
+        const auto &a = get<0>(t);
+        const auto &b = get<1>(t);
+        const auto &c = get<2>(t);
+        size_t seed = 2166136261U;
+        seed = (seed^a)*16777619U;
+        seed = (seed^b)*16777619U;
+        seed = (seed^c)*16777619U;
+        return seed;
+    }
 };
 */
+
 /*
 常用的比较器函数
 struct cmp{

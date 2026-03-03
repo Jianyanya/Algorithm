@@ -18,7 +18,7 @@ int main(){
     nodes[n].nextId = 1,nodes[1].preId = n;//首尾向相连成环
     int now = 1;//储存当前节点,上一节点已经在结构体数组中储存,所以不用创建pre
     while((n--)>1){
-        for(int i = 1;i<m;i++) now = nodes[now].nextId;//往后数三下
+        for(int i = 1;i<m;i++) now = nodes[now].nextId;//往后数m下
         cout<<nodes[now].id<<" ";
         //双链表比单链表的删除多一个操作
         int pre = nodes[now].preId,next = nodes[now].nextId;

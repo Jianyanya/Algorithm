@@ -1,3 +1,4 @@
+//cf,题目链接<https://codeforces.com/problemset/problem/493/C>
 #include <bits/stdc++.h>
 using namespace std;
 #define fo(i,l,r) for(int i=(l);i<=(r);++i)
@@ -15,22 +16,29 @@ int T;
 int n,m;
 void solve(){
     cin>>n;
-    ve<ll> a(n+1,LLONG_MAX);
-    fo(i,0,n-1) cin>>a[i];
+    ve<pair<int,int>> arr;
+    fo(i,1,n){
+        int p;cin>>p;
+        arr.emplace_back(p,0);
+    }
     cin>>m;
-    ve<ll>  b(m+1,LLONG_MAX);
-    fo(i,0,m-1) cin>>b[i];
-    ll suma = 3*n,sumb = 3*m;
-    ll i = 0,j = 0,ansa = suma,ansb = sumb;
-    while(i<n||j<m){
-        if(a[i]<b[j]){
-            if(i<n) i++;
-            suma--;
-            if(suma-sumb>ansa-ansb) ansa = suma,ansb = sumb;
-        }else{
-            if(j<m) j++;
-            sumb--;
-            if(suma-sumb>ansa-ansb) ansa = suma,ansb = sumb;
+    fo(i,1,m){
+        int p;cin>>p;
+        arr.emplace_back(p,1);
+    }
+    ranges::sort(arr);
+    int a = 3*n,b = 3*m;
+    int ansa = a,ansb = b;
+    int diff = a-b;
+    fo(i,0,arr.size()-1){
+        int d = arr[i].second;
+        if(d) b--;
+        else a--;
+        bool flge = false;
+        if(i==arr.size()-1||arr[i].first!=arr[i+1].first) flge = true;
+        if(flge){
+            int newdif = a - b;
+            if(newdif>diff) ansa = a,ansb = b,diff = newdif;
         }
     }
     cout<<ansa<<':'<<ansb;
