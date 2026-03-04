@@ -31,7 +31,7 @@ public:
             mn = min(arr[i],mn);
             mx = max(arr[i],mx);
         }
-        auto check = [&](ll mid)->bool{
+        auto check = [&](ll mid) -> bool {
             vector<ll> dif(n+1);
             ll sum = 0,cnt = 0;
             for(int i = 0;i<n;i++){
