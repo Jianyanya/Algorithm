@@ -43,8 +43,8 @@ int main() {
                 for(int k:arr[2]){
                     if(i!=j&&i!=k&&j!=k) ans = max(ans,nums[0][i]+nums[1][j]+nums[2][k]); 
 
-        }
-        }
+                }
+            }
         }
         cout<<ans<<endl;
     }

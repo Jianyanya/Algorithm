@@ -1,6 +1,7 @@
 //洛谷,题目链接<https://www.luogu.com.cn/problem/P1627>
 /*
 还是数字大小贡献的问题,去掉奇数限制是这个题:lc<https://leetcode.cn/problems/count-subarrays-with-median-k/description/>
+类似求多少个长度为奇数的连续子序列中奇偶数数量相同的个数
 */
 #include <bits/stdc++.h>
 using namespace std;

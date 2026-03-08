@@ -1,4 +1,11 @@
 //lc,题目链接<https://leetcode.cn/problems/concatenate-non-zero-digits-and-multiply-by-sum-ii/description/>
+/*
+很简单的一道题,题目无疑要做三件事
+1. 求数字值的前缀和
+2. 数字拼接,此题主要是前缀和,所以,拼接数字要使用前缀和的方法对其进行O(1)的优化
+    怎么弄,1020304,从前往后统计,1,1,12,12,123,123,1234,1234-12*100 == 34,所以要提前记录位数
+3. 统计数位,以方便拼接
+*/
 #include <vector>
 #include <string>
 using namespace std;
