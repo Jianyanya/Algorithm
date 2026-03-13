@@ -7,14 +7,16 @@ using namespace std;
 int n,k;
 char arr[9][9];
 long long ans = 0;
-int cl[9] = {0};
+int cl[9] = {0};//记录列
 void dfs(int cur,int s){
-    if(cur>k){
+    //这里可以是n也可以是k,但是含义不一样,我觉得n比较好,当搜过所有可放置点的时候,看条件是否满足
+    if(cur>n){
         if(s==k) ans++;
         return ;
     }
     //一排一排的搜
     for(int i = 0;i<n;i++){
+        //这里的隔行搜已经排除了同行的
         if(arr[cur][i]=='#'&&cl[i]==0){
             cl[i] = 1;//选了
             dfs(cur+1,s+1);
