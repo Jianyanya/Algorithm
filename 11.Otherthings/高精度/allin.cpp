@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 struct BigInt {
     vector<int> d;   // 低位在前
     bool neg = false;
@@ -31,6 +32,7 @@ struct BigInt {
             d.push_back(s[j] - '0');
         trim();
     }
+    //去除前导零
     void trim() {
         while (d.size() > 1 && d.back() == 0) d.pop_back();
         if (d.size() == 1 && d[0] == 0) neg = false;
