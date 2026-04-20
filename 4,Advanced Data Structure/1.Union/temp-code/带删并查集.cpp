@@ -34,14 +34,20 @@ struct DSU{
 
     void erase(int x){
         int y = find(x);
+        int old = sz[y];
         sz[y]--;
-        fa[x] = id++;
+        int root = id++;
+        fa[x] = root;
+        fa[root] = root;
+        sz[root] = 1;
+        if(old==1) ;
+        else cc++;
     }
 };
 int n,m,case_id = 0;                                                  
 int main(){
     while((cin>>n>>m),n){
-        //这里有个大忌,初始化的时候一定要按照题目数量,不然会导致虚拟节点映射错位
+        //这里有个大忌,初始化的时候一定要按照题目下标,从0开始,不然会导致虚拟节点映射错位
         DSU dsu(n,m);
         while(m--){
             char c;cin>>c;
@@ -53,11 +59,7 @@ int main(){
                 dsu.erase(x);
             }
         }
-        int res = 0;
-        for(int i = n;i<dsu.id;i++){
-            if(dsu.sz[i]&& i== dsu.find(i)) res++;
-        }
-        cout<<"Case #"<<(++case_id)<<": "<<res<<"\n";
+        cout<<"Case #"<<(++case_id)<<": "<<dsu.cc<<"\n";
     }
     return 0;
 }

@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int N = 10000000;
-vector<int> is_prime(N,true);
+vector<bool> is_prime(N,true);
 vector<int> primes;
 //埃式筛
 void init1(){

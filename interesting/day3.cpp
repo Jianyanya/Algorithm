@@ -1,29 +1,24 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-//直接取最小平均前缀
-/*
 
-*/
-class Solution{
-    const int N = 1e5+10;
-int n,k;
-int arr[N];
-int main(){
-    cin>>n>>k;
-    for(int i = 0;i<n;i++){
-        cin>>arr[i];
+bool f(long long m){
+    int a = 0,b = 0, c = 0;
+    while(m>0){
+        int p = m%10;
+        if(p==2) a++;
+        else if(p==0) b++;
+        else if(p==6) c++;
+        m/=10;
     }
-    int ans =INT_MAX ;
-    for(int i = 0;i<k;i++){
-        int sum = 0;
-        int cnt = 0;
-        for(int j = i;j<n;j+=k){
-            sum += arr[j];
-            cnt++;
-            ans = min(ans,sum/cnt);
-        }
-    }
-    cout<<ans;
-    return 0;
+    return (a==2&&b==1&&c==1);
 }
-};
+int main()
+{
+    int cnt = 0;
+    //2026;
+    for(long long i = 2026;i<=20262026;i++){
+        if(f(i)) cnt++;
+    }
+    cout<<cnt;
+  return 0;
+}
