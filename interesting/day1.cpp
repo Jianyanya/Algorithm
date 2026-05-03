@@ -1,81 +1,161 @@
+// #include <bits/stdc++.h>
+// using namespace std;
+// #define fo(i,l,r) for(int i=(l);i<=(r);++i)
+// #define ve vector
+// #define endl '\n'
+// using ll = long long;
+// using ull = unsigned long long;
+// using sr = string;
+// using db = double;
+// using dll = double long;
+// const int MOD=998244353;
+// const ll INF=1e18;
+// const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
+// int T;
+// int n, k, l;
+// string s;
+// void solve(){
+//     int n, k, l;
+//         string s;
+//         cin>>n>>l>>k>>s;
+//         // 1. 初步可行性判断
+//         if (n<k*l) {
+//             cout << "NO"<<endl;
+//             return ;
+//         }
+//         if(k==1){
+//             cout<<"YES"<<endl;
+//             cout<<s<<endl;
+//             return  ;
+//         }
+//         int p = n - k*l;
+//         char mx = 'a';
+//         for(char c:s) mx = max(mx,c);
+//         sr ans = "";
+//         for(int i = 0;i<n;i++){
+//             if(s[i]==mx){
+//                 int pr = (l - i%l)%l;
+//                 if(pr!=0&&p<pr) continue;
+//                 int wer = 0;
+//                 if(pr<=p) wer = p - pr;
+//                 sr str = s.substr(i+pr,l+wer);
+//                 //cout<<str<<endl;
+//                 ans = max(ans,str);
+//             }
+//         }
+//         cout << "YES\n";
+//         cout << ans << '\n';
+// }
+// signed main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     cin>>T;
+//     while(T--) solve();
+// }
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int mat[6][6] = {
-        {11, 8, 3, 27, 24, 1},
-        {2, 21, 16, 35, 17, 4},
-        {9, 29, 20, 30, 5, 10},
-        {36, 33, 13, 6, 23, 7},
-        {31, 14, 15, 28, 12, 25},
-        {34, 19, 18, 37, 22, 39}
-    };
+using ull = unsigned long long;
 
-    // 存储所有可能的1x2或2x1骨牌，每个骨牌用一个vector<int>存储两个格子的坐标 (r,c)
-    vector<pair<int,int>> dominoes; // 每个骨牌用起始格子表示，方向：0=水平，1=垂直
-    // 也可以直接存两个格子编号，但为了不重叠检查，存格子坐标
-    struct Domino {
-        int r1, c1, r2, c2;
-    };
-    vector<Domino> doms;
+const ull base = 131;
 
-    // 水平
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < 5; j++) {
-            if ((mat[i][j] + mat[i][j+1]) % 2 == 1) {
-                doms.push_back({i, j, i, j+1});
-            }
-        }
+int n, k, l;
+string s;
+vector<ull> h, p;
+
+// 取子串 hash
+ull get(int l, int r){
+    return h[r] - h[l-1] * p[r-l+1];
+}
+
+// 比较 s[a..a+len-1] 和 s[b..b+len-1]
+bool geq(int a, int b, int len){
+    int low = 0, high = len;
+    while(low < high){
+        int mid = (low + high + 1) >> 1;
+        if(get(a, a+mid-1) == get(b, b+mid-1)) low = mid;
+        else high = mid-1;
     }
-    // 垂直
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 6; j++) {
-            if ((mat[i][j] + mat[i+1][j]) % 2 == 1) {
-                doms.push_back({i, j, i+1, j});
-            }
-        }
-    }
+    if(low == len) return true;
+    return s[a+low] >= s[b+low];
+}
 
-    int m = doms.size();
-    set<set<int>> ansSet; // 用集合存储三个骨牌的索引，自动去重顺序
+// 判断某个子串作为 T 是否可行
+bool check(int st, int len){
+    int cnt = 0;
+    int i = 1;
 
-    for (int i = 0; i < m; i++) {
-        for (int j = i+1; j < m; j++) {
-            // 检查 i 和 j 是否重叠
-            bool overlap = false;
-            auto &d1 = doms[i];
-            auto &d2 = doms[j];
-            // 判断两个骨牌是否有公共格子
-            if ((d1.r1 == d2.r1 && d1.c1 == d2.c1) ||
-                (d1.r1 == d2.r2 && d1.c1 == d2.c2) ||
-                (d1.r2 == d2.r1 && d1.c2 == d2.c1) ||
-                (d1.r2 == d2.r2 && d1.c2 == d2.c2)) {
-                overlap = true;
-            }
-            if (overlap) continue;
+    while(i <= n){
+        int j = i + l - 1;
+        if(j > n) break;
 
-            for (int k = j+1; k < m; k++) {
-                auto &d3 = doms[k];
-                bool ok = true;
-                if ((d3.r1 == d1.r1 && d3.c1 == d1.c1) ||
-                    (d3.r1 == d1.r2 && d3.c1 == d1.c2) ||
-                    (d3.r2 == d1.r1 && d3.c2 == d1.c1) ||
-                    (d3.r2 == d1.r2 && d3.c2 == d1.c2)) {
-                    ok = false;
-                }
-                if (ok && ((d3.r1 == d2.r1 && d3.c1 == d2.c1) ||
-                           (d3.r1 == d2.r2 && d3.c1 == d2.c2) ||
-                           (d3.r2 == d2.r1 && d3.c2 == d2.c1) ||
-                           (d3.r2 == d2.r2 && d3.c2 == d2.c2))) {
-                    ok = false;
-                }
-                if (ok) {
-                    ansSet.insert({i, j, k});
+        int cur_len = l;
+
+        // 延长直到 >= T
+        while(j <= n){
+            if(cur_len >= len){
+                if(geq(i, st, len)){
+                    cnt++;
+                    i = j + 1;
+                    break;
                 }
             }
+            j++;
+            cur_len++;
         }
+
+        if(j > n) break;
     }
 
-    cout << ansSet.size() << endl;
-    return 0;
+    return cnt >= k;
+}
+
+void solve(){
+    cin >> n >> k >> l >> s;
+    s = " " + s;
+
+    if(n < k * l){
+        cout << "NO\n";
+        return;
+    }
+
+    // 预处理哈希
+    h.assign(n+1, 0);
+    p.assign(n+1, 1);
+    for(int i = 1; i <= n; i++){
+        h[i] = h[i-1] * base + s[i];
+        p[i] = p[i-1] * base;
+    }
+
+    string ans = "";
+
+    // 枚举起点
+    for(int i = 1; i <= n; i++){
+        int L = l, R = n - i + 1;
+        string best = "";
+
+        while(L <= R){
+            int mid = (L + R) >> 1;
+            if(check(i, mid)){
+                best = s.substr(i, mid);
+                L = mid + 1;
+            }else{
+                R = mid - 1;
+            }
+        }
+
+        if(best > ans) ans = best;
+    }
+
+    cout << "YES\n";
+    cout << ans << "\n";
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+    while(T--) solve();
 }

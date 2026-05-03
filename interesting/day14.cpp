@@ -1,3 +1,4 @@
+//
 #include <bits/stdc++.h>
 using namespace std;
 #define fo(i,l,r) for(int i=(l);i<=(r);++i)

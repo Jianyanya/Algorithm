@@ -58,6 +58,6 @@ int main(){
     //贪心
     slove1();
     //动态规划
-    slove2();
+    //slove2();
     return 0;
 }
