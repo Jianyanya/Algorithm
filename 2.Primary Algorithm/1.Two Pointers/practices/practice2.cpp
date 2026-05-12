@@ -2,13 +2,11 @@
 //很难弄的一个题,双指针
 /*
 解题思路:
-1.求范围总和,要使用前缀和处理数组,变成求两个数相差最接近s
-2.由于前缀处理后并没有出现明确的增或减(右窗口增加,左窗口减小),所以要排序
-3.要得到上下界,要记录原有的下标,然后与数值一起排序
-4.求与s最近的数就是求范围总和a与s的绝对值差尽量小,就越接近
-5.用双指针来找符合相差的条件
-题目细节问题
-1.求最接近的数,若有多个解,似乎要求长度最短的那个
+1. 这个题目就是求区间总和的绝对值最接近t的区间
+2. 看到区间和想前缀和,在前缀和数组中找两个值相差绝对值接近t
+3. 怎么找,直接枚举n^2,由于abs(pre[r] - pre[l]) == abs(pre[l] - pre[r]),即不用满足i<j,所以找任意位置的
+4. 既然是任意位置,就对前缀数组进行排序,同时保留下标进行记录,然后使用滑动窗口就行
+5. 实现细节: 对于每一次记录,都一定要先比较记录再进行对l,r的调整
 输入:
 5 1
 -10 -5 0 5 10
@@ -26,46 +24,40 @@
 9 1 1
 15 1 15
 15 1 15
-目前遇到的问题
-1.不知道题目到底要怎样的顺序,如果多解一模一样,到底输出谁,第一组中明明可以输出5 2 2,为什么是4 4
-2.若最短,那么第二组中查询5可以是-5啊,长度为1,绝对值最接近
-这个题就是依托答辩
 */
 #include<bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 int n,m;
-//0,-9,-1,-8,-2,-7,-3,-6,-4,-5,0;
-//0,1,2,3,4,5,6,7,8,9,10
-//-9,-8,-7,-6,-5,-4,-3,-2,-1,0,0;
-//0,-10,-15,-15,-10,0
-//-15,-15,-10,-10,0,0
 int main(){
         while(cin>>n>>m&&n!=0&&m!=0){
-            vector<pair<int,int>> arr;
+            vector<pair<ll,int> > arr;
             arr.push_back({0,0});
             for(int i = 1;i<=n;i++){
                 int p;cin>>p;
-                arr.push_back({arr[i-1].first+p,i});
+                arr.emplace_back(arr[i-1].first + p,i);
             }
-            sort(arr.begin(),arr.end(),[&](const auto &a,const auto &b){
-                return a.first<b.first;
-            });
+            sort(arr.begin(),arr.end());
             while(m--){
-                int s;cin>>s;
-                int t = s;
-                int left = 0,right  = INT_MAX,ans = 0;
-                for(int i = 1,j = 0;i<=n;i++){
-                    int a = arr[i].first - arr[j].first;
-                    while(j<i&&a>s){
-                        j++;
-                        a = arr[i].first - arr[j].first;
+                int k;cin>>k;
+                ll ans = 0,left = 1,right = 1,mn = INT_MAX;
+                int l = 0,r = 1;
+                while(l<=n&&r<=n){
+                    if(l==r){
+                        r++;
+                        continue;
                     }
-                    if(abs(a-s)<t||(abs(a-s)==t&&abs(arr[i].second-arr[j].second)<right-left)){
-                        t = abs(a-s);
-                        left = arr[i].second<arr[j].second?arr[i].second:arr[j].second;
-                        right = arr[i].second<arr[j].second?arr[j].second:arr[i].second;
-                        ans = a;
+                    ll res = arr[r].first - arr[l].first;
+                    ll df = llabs(res - k);
+                    if(df < mn){
+                        mn = df;
+                        left = min(arr[r].second,arr[l].second) + 1;
+                        right = max(arr[r].second,arr[l].second);
+                        ans = res;
                     }
+                    if(res > k) l++;
+                    else if(res < k) r++;
+                    else break;
                 }
                 cout<<ans<<" "<<left<<" "<<right<<endl;
             }

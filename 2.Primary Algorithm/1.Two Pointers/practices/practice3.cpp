@@ -25,105 +25,50 @@ q-i ->log2 = t;->4~8
 使用stl库中的lower_bound和upper_bound,但是这两个都不符合我想的要求
 一个月了,终于解决了,真的是太强了!!!
 */
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <cstdlib>
+#include <vector>
 #include<algorithm>
+#include<utility>//poj不能用
+#include <cmath>
+#include <fstream>
+#include<cstring>
+#include<climits>
 using namespace std;
 typedef long long ll;
-int mypow(int a){
-    return a==0?1:1<<a;
-}
+
 int main(){
-    int N;cin>>N;
-    while(N--){
-        int m;cin>>m;
-        vector<long long> arr(m+1);
-        for(int i = 1;i<=m;i++){
-            int p;cin>>p;
-            arr[i] = arr[i-1]+p;
+    int T;cin>>T;
+    while(T--){
+        int n;cin>>n;
+        vector<ll> arr(n+1);
+        ll sum = 0,ans = 0;
+        for(int i = 1;i<=n;i++){
+            cin>>arr[i];sum += arr[i];
+            ll cnt = n - i + 1;
+            ans += i*cnt + (ll)(i + n)*cnt/2;
         }
-        ll ans = 0;
-        //0,1,3,6,10,15,21,28,36,45,55
-        //2+4+6=12
-        for(int i = 1;i<=m;i++){
-            ll num = arr[i-1];
-            int pos = i;
-            for(int t = 0;t<=32;t++){
-                ll p = mypow(t)+num;
-                if(p>=arr[m]){
-                    int n = m-pos+1;
-                    ans += (t+1)*(1LL*i*n+n*(pos+m)/2);
-                    break;
+        for(ll s = 2;s<=sum;s <<= 1){
+            int r = 1;
+            ll res = 0;
+            for(int l = 1;l<=n;l++){
+                if(l > r){
+                    r = l;
+                    res = 0;
+                    continue;
                 }
-                int k = upper_bound(arr.begin(),arr.end(),p)-arr.begin();
-                if(k!=pos) k--;
-                int n = k-pos+1;
-                ans += (t+1)*(1LL*i*n+n*(pos+k)/2);
-                pos = k+1;
+                while(r<=n && res < s){
+                    res += arr[r++];
+                }
+                if(res >= s){
+                    int right = r - 1;
+                    ll cnt = n - right + 1;
+                    ans += (ll)l*cnt + (right + n)*cnt/2;
+                }
+                res -= arr[l];
             }
         }
         cout<<ans<<endl;
     }
     return 0;
 }
-/*
-#include<iostream>
-#include<vector>
-#include<algorithm>
-using namespace std;
-typedef long long ll;
-int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    int T; cin >> T;
-    while(T--){
-        int n; cin >> n;
-        int a;
-        vector<ll> prefix(n + 1, 0);
-        for(int i = 1; i <= n; i++){
-            cin >> a;
-            prefix[i] = prefix[i - 1] + a;
-        }
-        ll ans = 0;
-        for(int i = 1; i <= n; i++){
-            int j = i;
-            while(j <= n){
-                ll sum = prefix[j] - prefix[i - 1];
-                if(sum == 0){
-                    int k = j;
-                    while(k <= n && prefix[k] == prefix[i - 1]) k++;
-                    k--;
-                    int cnt = k - j + 1;
-                    ans += 1LL*cnt * i + 1LL*(j + k) * cnt / 2;// t=0, 所以(t+1)=1
-                    j = k + 1;
-                    continue;
-                }
-                int t = 0;
-                ll temp = sum;
-                while(temp > 1){
-                    t++;
-                    temp >>= 1;
-                }
-                ll lower = (1LL << t);
-                ll upper = (1LL << (t + 1)) - 1;
-                int left = j, right = n, R = j;
-                while(left <= right){
-                    int mid = (left + right) / 2;
-                    ll sum_mid = prefix[mid] - prefix[i - 1];
-                    if(sum_mid <= upper){
-                        R = mid;
-                        left = mid + 1;
-                    } else {
-                        right = mid - 1;
-                    }
-                }
-                int cnt = R - j + 1;
-                ans += (t+1)*(1LL*cnt * i + 1LL*(j + R) * cnt / 2);
-                j = R + 1;
-            }
-        }
-        cout << ans << "\n";
-    }
-    return 0;
-}
-*/
