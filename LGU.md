@@ -1,4 +1,4 @@
-/*
+```cpp
 ██▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓░                     ░                                                  ▓▓▓▓█▓█████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓                          ░                            ░░                  ▓▓▓███████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒                                                                             ▒▓███▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -62,11 +62,13 @@
 ▓▓▓▒▓▓█▓██████▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒░▓▓▓▓▓▓▒▒▒▓▓▓▓▓▓▓▓████████▓▓▓
 ▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▓▓▒▒▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▓▓▓▓▒▓▓▓▓▓▓▓██████████▓▓▓▓▓
 ▓░▒▓▓▓▓▓▓▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▒▓▓▓▓▓▓▓▓▓███▓▓▓▓▓▓▓▓▓▒▒▒
-*/
-/*
-T次测评模板+常规头文件模板
-辅助函数:哈希函数,比较函数,水仙花数,质数筛法,split方法,判断平方数
-*/
+```
+
+# T次测评模板+常规头文件模板:
+
+## 辅助函数:哈希函数,比较函数,水仙花数,质数筛法,split方法,判断平方数
+
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 #define fo(i,l,r) for(int i=(l);i<=(r);++i)
@@ -78,6 +80,7 @@ using sr = string;
 using db = double;
 using dll = double long;
 const int MOD=998244353;
+const int MX = 1e9;
 const ll INF=1e18;
 const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
 int T;
@@ -90,8 +93,11 @@ signed main() {
     cin>>T;
     while(T--) jianyanya();
 }
-/*
-//other
+```
+
+## other模板
+
+```cpp
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -106,10 +112,13 @@ using namespace std;
 int main(){
     return 0;
 }
-*/
-/*
-几种较好的防hack的哈希函数
-普通哈希函数
+```
+
+## 几种较好的防hack的哈希函数
+
+### 普通哈希函数
+
+```cpp
 struct custom_hash {
     static uint64_t splitmix64(uint64_t x) {
         x += 0x9e3779b97f4a7c15;
@@ -122,8 +131,13 @@ struct custom_hash {
         return splitmix64(x + FIXED_RANDOM);
     }
 };
-多元容器的哈希函数
-二元只需要删除第三条就行
+```
+
+### 多元容器的哈希函数
+
+**二元只需要删除第三条就行**
+
+```cpp
 struct TupleHash{
     size_t operator()(const tuple<int,int,int>&t)const{
         const auto &a = get<0>(t);
@@ -136,19 +150,22 @@ struct TupleHash{
         return seed;
     }
 };
-*/
+```
 
-/*
-常用的比较器函数
+## 常用的比较器函数
+
+```cpp
 struct cmp{
     bool operator()(const auto &a,const auto &b) const{
         a和b都可以自定义,b>a是升序,a>b是降序
         return  a>b;
     }
 };
-*/
-/*
-常用的水仙花数集(64位以内的)
+```
+
+## 常用的水仙花数集(64位以内的)
+
+```cpp
 vector<long long> narcissistic = {
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
         153, 370, 371, 407,
@@ -159,18 +176,21 @@ vector<long long> narcissistic = {
         24678050, 24678051, 88593477,
         146511208, 472335975, 534494836, 912985153,
         4679307774,
-        32164049650, 32164049651, 40028394225, 42678290603, 
+        32164049650, 32164049651, 40028394225, 42678290603,
         44708635679, 49388550606, 82693916578, 94204591914,
         28116440335967,
         4338281769391370, 4338281769391371,
         21897142587612075, 35641594208964132, 35875699062250035,
-        1517841543307505039, 3289582984443187032, 4498128791164624869, 
+        1517841543307505039, 3289582984443187032, 4498128791164624869,
         4929273885928088826
     };
-*/
-/*
-常用的质数筛法(lc版)
-埃式筛:
+```
+
+## 常用的质数筛法(lc版)
+
+### 埃式筛:
+
+```cpp
 const int MX = 1'000'001;
 bool is_prime[MX];
 vector<int> primes;
@@ -187,7 +207,11 @@ auto init = [] {
     }
     return 0;
 }();
-欧拉线性筛:
+```
+
+### 欧拉线性筛:
+
+```cpp
 const int MX = 1'000'001;
 bool is_prime[MX];
 vector<int> primes;
@@ -203,10 +227,13 @@ auto init = [] {
     }
     return 0;
 }();
-*/
-/*
-c++中实现的split
-适应:需要存储数据,数据复用,生命周期长
+```
+
+## c++中实现的split
+
+**适应:需要存储数据,数据复用,生命周期长**
+
+```cpp
 vector<stirng> getstrs(string str,char target){
     vector<string> res;
     string cur;
@@ -219,16 +246,23 @@ vector<stirng> getstrs(string str,char target){
     res.push_back(cur);
     return res;
 }
-这里给出第二个split,根据ranges视图实现的split
-适用:一次遍历,不返回数据,在遍历时是双指针形式,用于修改原字符
+```
+
+### 这里给出第二个split,根据ranges视图实现的split
+
+- **适用:一次遍历,不返回数据,在遍历时是双指针形式,用于修改原字符**
+
+```cpp
 for(auto it : s|ranges::views::split(' ')){
     //在循环中对it进行改动会影响原来整个字符串
     //比如反转每个被' '分割的部分
     ranges::reverse(it);
 }
-*/
-/*
-判断是否为平方数
+```
+
+## 判断是否为平方数
+
+```cpp
 bool is_square(ll x) {
     if (x < 0) return false;
     int d = x % 10;
@@ -239,4 +273,4 @@ bool is_square(ll x) {
     while (s * s > x) s--;
     return s * s == x;
 }
-*/
+```
