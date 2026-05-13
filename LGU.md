@@ -152,6 +152,10 @@ struct TupleHash{
 };
 ```
 
+### 终极版哈希函数(splitmix64)
+
+**包含int,long long,pair,tuple常见类型,但性能有亏损**
+
 ## 常用的比较器函数
 
 ```cpp
