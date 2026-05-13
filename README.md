@@ -2,12 +2,14 @@
 
 大家好，我是一名初入算法学习的蒟蒻  
 做这个主要是想监督自己学习,和记录个人笔记的  
+这里面除了我整理的各部分内容外,还有我最近写的题目(interesting部分),这部分我会定期整理并总结后归入章节中  
 我在东张西望思考的时候发现只要能把我的思路清晰完全地表达出来,就差不多弄懂了
 
 ### 提要:
 
-其中大多资料题目筛选于[罗永军的算法竞赛](http://tup.tsinghua.edu.cn/booksCenter/book_08808001.html)和我最喜欢的一个博主[灵山茶艾府](https://space.bilibili.com/206214)的题单,还有[OI wiki](https://oi-wiki.org/)的介绍  
-题目来源丰富:洛谷,leetcode,hdu,poj,codefoces等;  
+我的个人学习主要于[罗永军的算法竞赛](http://tup.tsinghua.edu.cn/booksCenter/book_08808001.html)和我最喜欢的一个博主[灵山茶艾府](https://space.bilibili.com/206214)的题单,还有[OI wiki](https://oi-wiki.org/)的介绍  
+板刷atc,加训cf,牛客打校赛(炸鱼还是被炸),洛谷玩paly,生活真是惬意  
+题目来源丰富:洛谷,leetcode,hdu,poj,codefoces,atcoder,牛客等;  
 其中都是用c++写的,对不起实在没有太多精力,我本身是java工程师呢
 
 ### 前言:
@@ -24,7 +26,7 @@ Arithmetic
 
 - 章节
   - 对应内容
-  - temple(模板代码)(一定要先看这个!!!)
+  - temple(模板代码)
   - practic(练习题)
   - md(章节内容介绍)
 
@@ -82,8 +84,6 @@ Arithmetic
 |                   |                          | 10.9 最小生成树           |
 
 ---
-
-### 我认为能教会别人,自己才算是真的掌握了!!!
 
 若有什么问题不要在GitHub上询问,我不太会处理,有问题直接加我的QQ 2960886170  
 欢迎大家来找我玩,交朋友  
