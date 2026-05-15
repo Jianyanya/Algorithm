@@ -93,7 +93,7 @@ struct CustomHash {
 void jianyanya(){
     int n,m;cin>>n>>m;
     unordered_map<pair<int,int>,int,CustomHash> mp;
-    ve<ve<int>> ls(n+2),rs(n+2);
+    ve<ve<int> > ls(n+2),rs(n+2);
     ve<int> minlr(n+2,MX),maxrl(n+2,-MX);
     ve<int> l_r(n+2,MX),r_l(n+2,-MX);
     for(int i = 0;i<m;i++){

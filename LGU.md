@@ -78,14 +78,21 @@ using ll = long long;
 using ull = unsigned long long;
 using sr = string;
 using db = double;
-using dll = double long;
+using dll = long double;
 const int MOD=998244353;
 const int MX = 1e9;
 const ll INF=1e18;
 const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
 int T;
 void jianyanya(){
-
+    int n;cin>>n;
+    ve<ve<int> > arr(n+1,0);
+    for(int i = 0;i<n;i++){
+        int p;cin>>p;
+        if(p==1) arr[i][p]++;
+        else arr[i][1]++;
+    }
+    cout<<arr[1][1]<<endl;
 }
 signed main() {
     ios_base::sync_with_stdio(false);

@@ -7,7 +7,7 @@
 
 ### 提要:
 
-我的个人学习主要于[罗永军的算法竞赛](http://tup.tsinghua.edu.cn/booksCenter/book_08808001.html)和我最喜欢的一个博主[灵山茶艾府](https://space.bilibili.com/206214)的题单,还有[OI wiki](https://oi-wiki.org/)的介绍  
+我的个人学习主要于[罗永军的算法竞赛](http://tup.tsinghua.edu.cn/booksCenter/book_08808001.html)和我最喜欢的一个博主[灵山茶艾府](https://space.bilibili.com/206214)的[题单](https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/),还有[OI wiki](https://oi-wiki.org/)的介绍  
 板刷atc,加训cf,牛客打校赛(炸鱼还是被炸),洛谷玩paly,生活真是惬意  
 题目来源丰富:洛谷,leetcode,hdu,poj,codefoces,atcoder,牛客等;  
 其中都是用c++写的,对不起实在没有太多精力,我本身是java工程师呢
@@ -67,7 +67,7 @@ Arithmetic
 |                   | 6.5 数(质数)             | 6.10 同余                 | 6.17 杜教筛                     |
 |                   |                          | 6.11 威尔逊定理           |
 |                   |                          | 6.12 整除分块(数论分块)   |
-| 7. 组合数学       | 7.1基本概念              | 7.4 卢卡斯定理            | 7.7 Burnside定理和Polya计数     |
+| 7. 组合数学       | 7.1 基本概念             | 7.4 卢卡斯定理            | 7.7 Burnside定理和Polya计数     |
 |                   | 7.2 鸽巢原理             | 7.5 容斥原理              | 7.8 母函数                      |
 |                   | 7.3 二项式定理和杨辉三角 | 7.6 Catalan数和Stirling数 | 7.9 公平组合游戏(博弈论)        |
 | 8. 计算几何       |                          | 8.1 二维几何              | 8.3 三维几何                    |
