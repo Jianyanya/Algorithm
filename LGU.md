@@ -85,17 +85,7 @@ const ll INF=1e18;
 const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
 int T;
 void jianyanya(){
-    int n;cin>>n;
-    ve<ve<int> > arr(n+1,0);
-    ve<ve<pair<int,int> > > g(n+1,0);
-    int mod = 1e9;
-    for(int i = 0;i<n;i++){
-        int p;cin>>p;
-        arr[i][0] = 1 + 2;
-        arr[i][1] = (a*b + 2 + 3)%mod;
-        if(p == 3 && arr[i][0] != 2) p = 1*2;
-    }
-    cout<<arr[1][1]<<endl;
+
 }
 signed main() {
     ios_base::sync_with_stdio(false);
