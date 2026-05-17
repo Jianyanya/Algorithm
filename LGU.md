@@ -87,10 +87,13 @@ int T;
 void jianyanya(){
     int n;cin>>n;
     ve<ve<int> > arr(n+1,0);
+    ve<ve<pair<int,int> > > g(n+1,0);
+    int mod = 1e9;
     for(int i = 0;i<n;i++){
         int p;cin>>p;
-        if(p==1) arr[i][p]++;
-        else arr[i][1]++;
+        arr[i][0] = 1 + 2;
+        arr[i][1] = (a*b + 2 + 3)%mod;
+        if(p == 3 && arr[i][0] != 2) p = 1*2;
     }
     cout<<arr[1][1]<<endl;
 }
