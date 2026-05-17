@@ -156,6 +156,67 @@ struct TupleHash{
 
 **包含int,long long,pair,tuple常见类型,但性能有亏损**
 
+```cpp
+struct CustomHash {
+    static uint64_t splitmix64(uint64_t x) {
+        x += 0x9e3779b97f4a7c15ULL;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9ULL;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111ebULL;
+        return x ^ (x >> 31);
+    }
+
+    template<class T>
+    static uint64_t hash_one(const T& x) {
+        if constexpr (std::is_integral_v<T>) {
+            return splitmix64(static_cast<uint64_t>(x));
+        } else {
+            return splitmix64(std::hash<T>{}(x));
+        }
+    }
+
+    template<class T>
+    static void hash_combine(uint64_t& seed, const T& x) {
+        seed ^= hash_one(x) + 0x9e3779b97f4a7c15ULL + (seed << 6) + (seed >> 2);
+    }
+
+    template<class A, class B>
+    size_t operator()(const std::pair<A, B>& p) const {
+        static const uint64_t FIXED_RANDOM =
+            std::chrono::steady_clock::now().time_since_epoch().count();
+
+        uint64_t seed = FIXED_RANDOM;
+        hash_combine(seed, p.first);
+        hash_combine(seed, p.second);
+
+        return splitmix64(seed);
+    }
+
+    template<class Tuple, size_t... I>
+    static uint64_t hash_tuple_impl(const Tuple& tp, std::index_sequence<I...>) {
+        static const uint64_t FIXED_RANDOM =
+            std::chrono::steady_clock::now().time_since_epoch().count();
+
+        uint64_t seed = FIXED_RANDOM;
+        (hash_combine(seed, std::get<I>(tp)), ...);
+
+        return splitmix64(seed);
+    }
+
+    template<class... Args>
+    size_t operator()(const std::tuple<Args...>& tp) const {
+        return hash_tuple_impl(tp, std::index_sequence_for<Args...>{});
+    }
+
+    template<class T>
+    size_t operator()(const T& x) const {
+        static const uint64_t FIXED_RANDOM =
+            std::chrono::steady_clock::now().time_since_epoch().count();
+
+        return splitmix64(hash_one(x) + FIXED_RANDOM);
+    }
+};
+```
+
 ## 常用的比较器函数
 
 ```cpp
