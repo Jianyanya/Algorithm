@@ -11,7 +11,7 @@ struct Edge{
 
 int main(){
     int n,m;cin>>n>>m;
-    vector<Edge> g(n+1);
+    vector<Edge> g;
     while(m--){
         int p;cin>>p;
         if(p == 3){

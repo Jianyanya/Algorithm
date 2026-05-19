@@ -1,47 +1,48 @@
-//哈夫曼编码-poj-1521,题目链接<http://poj.org/problem?id=1521>
-//好不容易找到的,非常简单的一道哈夫曼编码题,主要考察哈夫曼编码的本质
-//别看描述,都是废话,直接看input和output,就是给你一个字符串,求8bit的ASCII码存储和用哈夫曼编码存储各需要多少位,并看看压缩效率有多高.
+//https://www.luogu.com.cn/problem/P1229
 /*
-我们先要知道以下知识
-1.字母在ASCII码表中本来就是8进制位,所以储存长度就为(字符串长度*8)
-2.哈夫曼编码长度就是所有带权路径长度之和
-3.压缩效率就是(ASCII长度/哈夫曼编码长度*100%)
-
-怎么实现?
-我们要用到优先队列这个东西,就是最小(最大)生成堆,就相当一个单调栈,但是你只需要无脑把数据放进去,他会自动对堆中的数据进行排序
-在构建哈夫曼树的时候,字母出现频次为节点值,先让节点按照大小排序,再去挑小的两个合并到一起,再放回原来进行排序,继续挑最小..
-可以发现,我们把数据拿出来又放回去,还要保证每次拿出来的都是最小值,肯定是每次拿放里面都进行了排序,所以优先队列出来了
-那么接下来就好实现了
+做完了知道前序或者后序 + 中序遍历可以构建一颗二叉树
+现在我们来看,求知道前序和后序之后,能构造的二叉树树有多少种
+还是看前序和后序的构成
+前序遍历: 根 -> 左子树 -> 右子树
+后序遍历: 左子树 -> 右子树 -> 根
+依旧是从根开始,我们可以先记录前序中根在后序中出现的位置
+然后还是分治和递归的方法
+我们可以想象前序和后序就是一条线,一个从前往后找,一个从后往前找,然后相遇或不相遇
+因此我们分为两种情况来讨论
+1. 当我们记录的两个根出现的位置相同时(相遇)
+前面和后面都相遇了,那不就确定了一颗树吗,只是不知道左树还是右树,都行,因此返回2倍的结果
+因为我们是按顺序从前序遍历中找的,所以判断i == sufR - 1;sufR为后序右端点
+2. 不相遇的情况
+这时就会遇到以下情况
+(遍历过的点) + 根(当前遍历到的点) + (填充物) + 后面的点
+(遍历过的点) + (填充物) + 根(当前遍历到的点) + (填充物) + (遍历过的点)
+这里两个根就被分为左右子树了,所以已经确定了,那么就继续在左右搜索
 */
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<queue>
-#include<string>
+#include<bits/stdc++.h>
 using namespace std;
-string str;
+typedef long long ll;
+
 int main(){
-    while(getline(cin,str)&&str!="END"){
-        priority_queue<int,vector<int>,greater<int>> pq;
-        //计算每种字符的频次
-        sort(str.begin(),str.end());
-        int n = 1;
-        for(int i = 1;i<=str.length();i++){
-            if(str[i]!=str[i-1]) pq.push(n),n=1;
-            else n++;
-        }
-        int ans = 0;
-        //开始模拟
-        if(pq.size()==1) ans = str.length();
-        while(pq.size()>1){
-            int a = pq.top();pq.pop();
-            int b = pq.top();pq.pop();
-            pq.push(a+b);
-            ans += a+b;
-        }
-        pq.pop();
-        int s = str.length()*8;
-        printf("%d %d %.1lf\n",s,ans,(double)s/(double)ans);
+    string pre,suf;
+    cin>>pre>>suf;
+    int n = pre.size();
+    unordered_map<char,int> mp;
+    for (int i = 0; i < n; ++i) {
+        mp[suf[i]] = i;
     }
+    auto dfs = [&](this auto&& dfs,int prel,int prer,int sufl,int sufr) -> ll {
+        if(prel >= prer || sufl >= sufr) return 1;
+        int pos = mp[pre[prel]];
+        if(pos == sufr - 1){
+            return 2*dfs(prel + 1,prer,sufl,sufr - 1);
+        }else{
+            int size = pos - sufl + 1;
+            int left = dfs(prel + 1,prel + size,sufl,pos);
+            int right = dfs(prel + size + 1,prer,pos + 1,sufr - 1);
+            return 1LL*left*right;
+        }
+        
+    };
+    cout<<dfs(0,n - 1,0,n - 1)<<endl;
     return 0;
 }
