@@ -1,4 +1,8 @@
 //https://www.luogu.com.cn/problem/P1352
+/*
+树形dp板子
+线性dp是从前面的序列中收集答案,而树形dp是在某个节点收集该节点的子节点的答案
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
