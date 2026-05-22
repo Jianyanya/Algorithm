@@ -40,7 +40,8 @@ int lca(int u,int v){
     if(depth[u] < depth[v]) swap(u,v);
     for(int i = LOG - 1;i>=0;i--){
         if(depth[f[u][i]] >= depth[v]) u = f[u][i];
-    }if(u == v) return u;
+    }
+    if(u == v) return u;
     for(int i = LOG - 1;i>=0;i--){
         if(f[u][i] != f[v][i]){
             u = f[u][i];
