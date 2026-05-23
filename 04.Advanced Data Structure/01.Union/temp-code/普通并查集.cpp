@@ -5,9 +5,8 @@ using namespace std;
 
 struct DSU{
     vector<int> fa,sz;
-    int cc;
 
-    DSU(int n) :fa(n),sz(n,1),cc(n){
+    DSU(int n) :fa(n),sz(n,1){
         iota(fa.begin(),fa.end(),0);
     }
     
@@ -21,7 +20,6 @@ struct DSU{
         if(sz[x]<sz[y]) swap(x,y);
         fa[y] = x;
         sz[x] += sz[y];
-        cc--;
         return true;
     }
 

@@ -6,9 +6,9 @@ using namespace std;
 
 struct DSU{
     vector<int> fa,sz,sum;
-    int id,cc;
+    int id;
 
-    DSU(int n,int m) : id(n*2),fa(2*n+m),sz(2*n+m,1),cc(n),sum(2*n+m,0){
+    DSU(int n,int m) : id(n*2),fa(2*n+m),sz(2*n+m,1),sum(2*n+m,0){
         iota(sum.begin()+n,sum.end(),1);
         iota(fa.begin(),fa.begin() + n,n);
         iota(fa.begin() + n,fa.end(),n);
@@ -25,7 +25,6 @@ struct DSU{
         fa[y] = x;
         sz[x] += sz[y];
         sum[x] += sum[y];
-        cc--;
         return true;
     }
 
