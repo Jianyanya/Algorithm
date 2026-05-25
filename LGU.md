@@ -114,6 +114,20 @@ int main(){
 }
 ```
 
+## 快速幂模板
+
+```cpp
+long long qpow(long long a,long long b,int MOD){
+    long long ans = 1;
+    while(b){
+        if(b&1) ans = (ans * a)%MOD;
+        a = (a * a)%MOD;
+        b >>= 1;
+    }
+    return ans;
+}
+```
+
 ## 几种较好的防hack的哈希函数
 
 ### 普通哈希函数

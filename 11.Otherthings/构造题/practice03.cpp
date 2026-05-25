@@ -1,3 +1,4 @@
+//https://codeforces.com/contest/2231/problem/D
 #include <bits/stdc++.h>
 using namespace std;
 #define fo(i,l,r) for(int i=(l);i<=(r);++i)
@@ -13,167 +14,163 @@ const int MX = 1e9;
 const ll INF=1e18;
 const int DIR[4][2] = {{1,0},{-1,0},{0,-1},{0,1}};
 int T;
-void jianyanya(){
-    int n;
-    cin>>n;
-
-    string s;
-    cin>>s;
-    s=" "+s;
-
-    ve<ll>a(n+1),c(n+1),b(n+1);
-    fo(i,1,n) cin>>a[i];
-    fo(i,1,n) cin>>c[i];
-
-    fo(i,2,n){
-        if(c[i]<c[i-1]){
-            cout<<"NO"<<endl;
-            return;
-        }
-    }
-
-    ve<int> must(n+1,0);
-    must[1]=1;
-    fo(i,2,n){
-        if(c[i]>c[i-1]) must[i]=1;
-    }
-    bool ok=true;
-    for(int l=0;l<=n;){
-        int r=l;
-        while(r+1<=n&&s[r+1]=='1') r++;
-
-        ve<ll> pre(r-l+1,0);
-        fo(i,l+1,r){
-            pre[i-l]=pre[i-l-1]+a[i];
-        }
-
-        bool fixed=false;
-        ll base=0;
-
-        if(l==0){
-            fixed=true;
-            base=0;
-        }
-        fo(i,max(1,l),r){
-            if(must[i]){
-                ll need=c[i]-pre[i-l];
-                if(!fixed){
-                    fixed=true;
-                    base=need;
-                }else if(base!=need){
-                    ok=false;
-                }
-            }
-        }
-
-        if(!ok) break;
-
-        if(!fixed){
-            base=LLONG_MAX;
-            fo(i,max(1,l),r){
-                base=min(base,c[i]-pre[i-l]);
-            }
-        }
-
-        fo(i,max(1,l),r){
-            b[i]=base+pre[i-l];
-            if(must[i]&&b[i]!=c[i]) ok=false;
-            if(!must[i]&&b[i]>c[i]) ok=false;
-        }
-        if(!ok) break;
-        if(r==n) break;
-        l=r+1;
-    }
-    if(!ok){
-        cout<<"NO"<<endl;
-        return;
-    }
-    fo(i,1,n){
-        if(s[i]=='0'){
-            a[i]=b[i]-b[i-1];
-        }
-    }
-    cout<<"YES"<<endl;
-    fo(i,1,n){
-        cout<<a[i]<<" \n"[i==n];
-    }
-}
 // void jianyanya(){
-//     int n;cin>>n;
-//     sr str;cin>>str;
-//     str = " "+str;
-//     ve<ll> arr(n+1),maxpre(n+1),pre(n+1);
-//     fo(i,1,n) cin>>arr[i];
-//     fo(i,1,n) cin>>maxpre[i];
-//     ve<bool> must(n+1,false);
-//     must[1] = true;
+//     int n;
+//     cin>>n;
+
+//     string s;
+//     cin>>s;
+//     s=" "+s;
+
+//     ve<ll>a(n+1),c(n+1),b(n+1);
+//     fo(i,1,n) cin>>a[i];
+//     fo(i,1,n) cin>>c[i];
+
 //     fo(i,2,n){
-//         if(maxpre[i] < maxpre[i-1]){
+//         if(c[i]<c[i-1]){
 //             cout<<"NO"<<endl;
 //             return;
 //         }
-//         if(maxpre[i] != maxpre[i-1]){
-//             must[i] = true;
-//         }
 //     }
-//     bool flg = true;
-//     for(int i=0;i<n;){
-//         int j = i;
-//         ll sum = 0;
-//         ve<ll> rel;
-//         rel.push_back(0);
-//         while(j + 1 <= n && str[j+1] == '1'){
-//             sum += arr[j+1];
-//             rel.push_back(sum);
-//             j++;
+
+//     ve<int> must(n+1,0);
+//     must[1]=1;
+//     fo(i,2,n){
+//         if(c[i]>c[i-1]) must[i]=1;
+//     }
+//     bool ok=true;
+//     for(int l=0;l<=n;){
+//         int r=l;
+//         while(r+1<=n&&s[r+1]=='1') r++;
+
+//         ve<ll> pre(r-l+1,0);
+//         fo(i,l+1,r){
+//             pre[i-l]=pre[i-l-1]+a[i];
 //         }
-//         bool fixed = false;
+
+//         bool fixed=false;
 //         ll base=0;
-//         if(i==0){
-//             fixed = true;
+
+//         if(l==0){
+//             fixed=true;
 //             base=0;
 //         }
-//         for(int p=i;p<=j;p++){
-//             if(p>=1&&must[p]){
-//                 ll need = maxpre[p] - rel[p-i];
+//         fo(i,max(1,l),r){
+//             if(must[i]){
+//                 ll need=c[i]-pre[i-l];
 //                 if(!fixed){
-//                     fixed = true;
-//                     base = need;
-//                 }else if(base != need){
-//                     flg = false;
-//                     break;
+//                     fixed=true;
+//                     base=need;
+//                 }else if(base!=need){
+//                     ok=false;
 //                 }
 //             }
 //         }
-//         if(!flg) break;
+
+//         if(!ok) break;
+
 //         if(!fixed){
-//             base = LLONG_MAX;
-//             for(int p=max(1,i);p<=j;p++){
-//                 base = min(base,maxpre[p] - rel[p-i]);
+//             base=LLONG_MAX;
+//             fo(i,max(1,l),r){
+//                 base=min(base,c[i]-pre[i-l]);
 //             }
 //         }
-//         for(int p=i;p<=j;p++){
-//             pre[p] = base + rel[p-i];
-//             if(p >= 1){
-//                 if(pre[p] > maxpre[p]) flg = false;
-//                 if(must[p] && pre[p]!=maxpre[p]) flg = false;
-//             }
+
+//         fo(i,max(1,l),r){
+//             b[i]=base+pre[i-l];
+//             if(must[i]&&b[i]!=c[i]) ok=false;
+//             if(!must[i]&&b[i]>c[i]) ok=false;
 //         }
-//         if(!flg) break;
-//         i = j + 1;
+//         if(!ok) break;
+//         if(r==n) break;
+//         l=r+1;
 //     }
-//     if(!flg){
+//     if(!ok){
 //         cout<<"NO"<<endl;
 //         return;
-//     }else cout<<"YES"<<endl;
+//     }
 //     fo(i,1,n){
-//         if(str[i]=='0'){
-//             arr[i]=pre[i]-pre[i-1];
+//         if(s[i]=='0'){
+//             a[i]=b[i]-b[i-1];
 //         }
 //     }
-//     fo(i,1,n) cout<<arr[i]<<" ";
-//     cout<<endl;
+//     cout<<"YES"<<endl;
+//     fo(i,1,n){
+//         cout<<a[i]<<" \n"[i==n];
+//     }
 // }
+void jianyanya(){
+    int n;cin>>n;
+    sr str;cin>>str;
+    str = " "+str;
+    ve<ll> arr(n+1),maxpre(n+1),pre(n+1);
+    fo(i,1,n) cin>>arr[i];
+    fo(i,1,n) cin>>maxpre[i];
+    ve<bool> must(n+1,false);
+    must[1] = true;
+    fo(i,2,n){
+        if(maxpre[i] > maxpre[i-1]){
+            must[i] = true;
+        }
+    }
+    bool flg = true;
+    for(int i=0;i<n;){
+        int j = i;
+        ll sum = 0;
+        ve<ll> rel;
+        rel.push_back(0);
+        while(j + 1 <= n && str[j+1] == '1'){
+            sum += arr[j+1];
+            rel.push_back(sum);
+            j++;
+        }
+        bool fixed = false;
+        ll base=0;
+        if(i==0){
+            fixed = true;
+            base=0;
+        }
+        for(int p=i;p<=j;p++){
+            if(p>=1&&must[p]){
+                ll need = maxpre[p] - rel[p-i];
+                if(!fixed){
+                    fixed = true;
+                    base = need;
+                }else if(base != need){
+                    flg = false;
+                    break;
+                }
+            }
+        }
+        if(!flg) break;
+        if(!fixed){
+            base = LLONG_MAX;
+            for(int p=max(1,i);p<=j;p++){
+                base = min(base,maxpre[p] - rel[p-i]);
+            }
+        }
+        for(int p=i;p<=j;p++){
+            pre[p] = base + rel[p-i];
+            if(p >= 1){
+                if(pre[p] > maxpre[p]) flg = false;
+                if(must[p] && pre[p]!=maxpre[p]) flg = false;
+            }
+        }
+        if(!flg) break;
+        i = j + 1;
+    }
+    if(!flg){
+        cout<<"NO"<<endl;
+        return;
+    }else cout<<"YES"<<endl;
+    fo(i,1,n){
+        if(str[i]=='0'){
+            arr[i]=pre[i]-pre[i-1];
+        }
+    }
+    fo(i,1,n) cout<<arr[i]<<" ";
+    cout<<endl;
+}
 // void jianyanya(){
 //     int n;cin>>n;
 //     sr str;cin>>str;
