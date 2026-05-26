@@ -114,7 +114,7 @@ void jianyanya(){
         }
     }
     bool flg = true;
-    for(int i=0;i<n;){
+    for(int i=0;i<=n;){
         int j = i;
         ll sum = 0;
         ve<ll> rel;
