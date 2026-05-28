@@ -22,20 +22,21 @@ vector<vector<pair<int,ll>> > g;
 vector<vector<int> > f;
 vector<int> depth;
 vector<ll> dis;
+
 void dfs(int u,int fa){
-        f[u][0] = fa;
-        depth[u] = depth[fa] + 1;
-        for(int i = 1;i<=LOG;i++){
-            f[u][i] = f[f[u][i-1]][i-1];
-        }
-        for(auto p:g[u]){
-            int v = p.first;
-            ll w = p.second;
-            if(v == fa) continue;
-            dis[v] = dis[u] + w;
-            dfs(v,u);
-        }
+    f[u][0] = fa;
+    depth[u] = depth[fa] + 1;
+    for(int i = 1;i<=LOG;i++){
+        f[u][i] = f[f[u][i-1]][i-1];
     }
+    for(auto p:g[u]){
+        int v = p.first;
+        ll w = p.second;
+        if(v == fa) continue;
+        dis[v] = dis[u] + w;
+        dfs(v,u);
+    }
+}
 int lca(int u,int v){
     if(depth[u] < depth[v]) swap(u,v);
     for(int i = LOG - 1;i>=0;i--){

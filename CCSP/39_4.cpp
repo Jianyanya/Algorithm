@@ -1,48 +1,60 @@
-//40
-#include<iostream>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
-const int N = 200005;
-vector<int> arr(N);
-vector<int> e[N];
-//0
-bool dfs(int i,int fa,int end,int &ans){
-    if(i==end){
-        ans |= 1<<arr[i];
-        return true;
+const int LOG = 31;
+
+int n,m;
+vector<int> val;
+vector<vector<int> > g;
+vector<int> f;
+vector<int> dep;
+
+void dfs(int u,int fa){
+    f[u] = fa;
+    dep[u] = dep[fa] + 1;
+    for(auto v:g[u]){
+        if(v == fa) continue;
+        dfs(v,u);
     }
-    for(int &d:e[i]){
-        if(d!=fa){
-            int temp = ans;
-            ans |= 1<<arr[i];
-            if(dfs(d,i,end,ans)) return true;
-            ans = temp;
-        }
-    }
-    return false;
 }
-int main(){
-    int n,m;cin>>n>>m;
-    for(int i = 1;i<=n;i++) cin>>arr[i];
-    for(int i = 0;i<n-1;i++){
-        int x,y;cin>>x>>y;
-        e[x].push_back(y);
-        e[y].push_back(x);
+int lca(int u,int v){
+    vector<bool> vis(n + 1, false);
+    while (dep[u] > dep[v]) {
+        vis[val[u]] = true;
+        u = f[u];
     }
-    vector<int> arr;
+    while (dep[v] > dep[u]) {
+        vis[val[v]] = true;
+        v = f[v];
+    }
+    while (u != v) {
+        vis[val[u]] = true;
+        vis[val[v]] = true;
+        u = f[u];
+        v = f[v];
+    }
+    vis[val[u]] = true;
+    int mex = 0;
+    while (vis[mex]) mex++;
+    return mex;
+}
+
+int main(){
+    cin>>n>>m;
+    val.assign(n+1,0);
+    g.assign(n+1,{});
+    f.assign(n+1,0);
+    iota(f.begin(),f.end(),0);
+    dep.assign(n+1,0);
+    for(int i = 1;i<=n;i++) cin>>val[i];
+    for(int i = 0;i<n-1;i++){
+        int u,v;cin>>u>>v;
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+    dfs(1,0);
     while(m--){
-        int b,end;cin>>b>>end;
-        int ans = 0;
-        ans |= 1<<arr[b];
-        if(dfs(b,0,end,ans)){
-            for(int i = 0;i<32;i++){
-                if((ans&(1<<i))==0){
-                    cout<<i;
-                    break;
-                }
-            }
-        }
-        cout<<endl;
+        int u,v;cin>>u>>v;
+        cout<<lca(u,v)<<endl;
     }
     return 0;
 }
