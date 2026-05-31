@@ -6,7 +6,29 @@
 我在东张西望思考的时候发现只要能把我的思路清晰完全地表达出来,就差不多弄懂了
 
 ### 提要:
+<details style="
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  margin: 24px 0;
+  color: #1e293b;
+">
+<summary style="
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+">🔷 蓝色毛玻璃折叠框</summary>
 
+这里可以放一些重要的补充说明，支持所有 Markdown。
+</details>
 我的个人学习主要于[罗永军的算法竞赛](http://tup.tsinghua.edu.cn/booksCenter/book_08808001.html)和我最喜欢的一个博主[灵山茶艾府](https://space.bilibili.com/206214)的[题单](https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/),还有[OI wiki](https://oi-wiki.org/)的介绍  
 板刷atc,加训cf,牛客打校赛(炸鱼还是被炸),洛谷玩paly,生活真是惬意  
 题目来源丰富:洛谷,leetcode,hdu,poj,codefoces,atcoder,牛客等;  
@@ -22,8 +44,20 @@
 
 ### 更新通知: 
 
+- 2026-5-27 :  
 新增cf的贪心构造题专题  
 开始更新CSP题单  
+
+- 2026-5-31 :  
+<details>
+<summary>个人抱怨,可以选择不看喵</summary>
+
+哎,从42次csp之后我发现学的东西多了,但是能力却不够了,其实我也陷入了困境之中了  
+好累,好忙,好痛苦,感觉在崩溃的边缘了,我不禁反思,这样做真的还叫兴趣吗?  
+到底是什么影响了我的心态呢,我又感觉到了我没有有效做题,哎  
+听到小茵说大多数狂训的人,打cf,赛时水平波动都会很大,我也不清楚,我也是这样的  
+不理解,不清楚,感觉好无力,但又不愿意放弃  
+</details>
 
 ### 文件框架
 
