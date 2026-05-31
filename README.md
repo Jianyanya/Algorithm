@@ -32,30 +32,16 @@
   margin-top: 10px;
 ">
 
-- 2026-5-27 :  
-新增cf的贪心构造题专题  
-开始更新CSP题单  
-
 - 2026-5-31 :  
-<details style="
-  border: 1px solid #e0d6f5;
-  border-radius: 8px;
-  padding: 8px 12px;
-  margin-top: 8px;
-  background: #faf5ff;
-">
-<summary style="
-  color: #7c3aed;
-  font-weight: 500;
-  cursor: pointer;
-  outline: none;
-">个人抱怨,可以选择不看喵</summary>
+开始强化dp章节和学习线段树,并更新42次csp题解
+<details><summary>个人抱怨,可以选择不看喵</summary>
 
 哎,从42次csp之后我发现学的东西多了,但是能力却不够了,其实我也陷入了困境之中了  
 好累,好忙,好痛苦,感觉在崩溃的边缘了,我不禁反思,这样做真的还叫兴趣吗?  
 到底是什么影响了我的心态呢,我又感觉到了我没有有效做题,哎  
 听到小茵说大多数狂训的人,打cf,赛时水平波动都会很大,我也不清楚,我也是这样的  
 不理解,不清楚,感觉好无力,但又不愿意放弃  
+</details>
 </div>
 </details>
 
