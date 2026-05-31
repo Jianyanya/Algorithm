@@ -243,20 +243,20 @@ Arithmetic
   max-width: 600px;
   margin: 30px auto 10px;
   padding: 16px 22px;
-  background: #22183a;
-  border: 1px solid #5a3e85;
+  background: #faf5ff;
+  border: 1px solid #e0d6f5;
   border-radius: 12px;
   text-align: center;
-  color: #d4c4f0;
+  color: #6b21a8;
   font-size: 14px;
   line-height: 1.8;
 ">
   <p style="margin: 0;">
     📬 有问题不要直接在 GitHub 上询问（我不太会处理），<br/>
-    直接加 <strong style="color:#b794f4;">QQ 2960886170</strong> 找我～<br/>
+    直接加 <strong style="color:#7c3aed;">QQ 2960886170</strong> 找我～<br/>
     欢迎来交朋友、一起玩！
   </p>
-  <p style="margin: 8px 0 0; font-size: 13px; color: #a78bfa;">
+  <p style="margin: 8px 0 0; font-size: 13px; color: #8b5cf6;">
     ✨ 制作不易，欢迎点赞、分享推荐 ✨
   </p>
 </div>
