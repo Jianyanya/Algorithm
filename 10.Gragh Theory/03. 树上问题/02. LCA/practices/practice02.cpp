@@ -13,7 +13,7 @@
 dist(a,b) = dis[a] + dis[b] - 2*dis[lca(a,b)];
 dist(a,c) = dis[a] + dis[c] - 2*dis[lca(a,c)];
 dist(b,c) = dis[b] + dis[c] - 2*dis[lca(b,c)];
-相加得 2*(dis[a] + dis[b] + dis[c] - dis[lca(a,b) - dis[lca(a,c)] - dis[lca(b,c)]])
+相加得 2*(dis[a] + dis[b] + dis[c] - dis[lca(a,b)] - dis[lca(a,c)] - dis[lca(b,c)]])
 这样就得出了怎么计算该子树边长,如果有不同边权值,则需要单独计算depth和dis的值
 这个中心就是三个公共最近祖先深度最高的
 */

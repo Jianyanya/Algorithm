@@ -45,6 +45,7 @@ int main(){
         }
         cout<<ans;
     };
+    //优先队列实现的Prim算法
     auto Prim_pq = [&]() -> void {
         vector<vector<pair<int,ll> > > g(n+1);
         for(int i = 1;i<=m;i++){

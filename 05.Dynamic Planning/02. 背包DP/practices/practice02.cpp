@@ -1,3 +1,4 @@
+//https://www.luogu.com.cn/problem/P8806
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -13,7 +14,7 @@ int main(){
         mx = max(mx,w+v);
     }
     sort(arr.begin(),arr.end(),[&](const auto&a,const auto&b){
-        return a[0] + a[1] <= b[0] + b[1];
+        return a[1] + a[0] < b[1] + b[0];
     });
     int ans = 0;
     vector<int> dp(mx+1,0);
